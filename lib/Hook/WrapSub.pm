@@ -7,7 +7,7 @@ use strict;
 use vars qw( $VERSION @ISA @EXPORT @EXPORT_OK );
 
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 @ISA = qw(Exporter);
 @EXPORT = qw();
 @EXPORT_OK = qw(
@@ -241,7 +241,7 @@ sub wrap_subs(@) {
         return();
       }
 
-      if ( $wantarray ) {
+      unless ( $wantarray ) {
         # scalar context
         &$precall_cr  if $precall_cr;
         $Hook::WrapSub::result[0] = &$sr;

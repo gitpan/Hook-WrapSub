@@ -1,5 +1,8 @@
 Revision history for Perl extension Hook::WrapSub.
 
+0.03  Mon Nov  8 16:59:13 EST 1999
+	- Fixed bug: sense of wantarray was inverted
+
 0.02  Thu Oct 28 11:24:05 EDT 1999
 	- added ability to wrap subs in other namespaces.
 
