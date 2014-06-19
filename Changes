@@ -1,11 +1,20 @@
-Revision history for Perl extension Hook::WrapSub.
+Revision history for Perl module Hook::WrapSub
 
-0.03  Mon Nov  8 16:59:13 EST 1999
-	- Fixed bug: sense of wantarray was inverted
+0.03_01 2014-06-19
+    - Switched to Dist::Zilla
+    - Moved test.pl to t/01-basic.t
+    - Added SEE ALSO section, with links to, and descriptions of,
+      similar modules.
+    - Added github repo to pod
+    - Reformatted Changes as per CPAN::Changes::Spec
 
-0.02  Thu Oct 28 11:24:05 EDT 1999
-	- added ability to wrap subs in other namespaces.
+0.03 2000-02-01 JDPORTER
+    - Fixed bug: sense of wantarray was inverted
 
-0.01  Thu Oct 14 10:43:54 1999
-	- original version; created by John Porter, via h2xs 1.19
+0.02 1999-11-03 JDPORTER
+    - First release to CPAN
+    - Added ability to wrap subs in other namespaces.
+
+0.01 1999-10-14
+    - original version; created by John Porter, via h2xs 1.19
 

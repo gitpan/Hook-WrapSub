@@ -1,19 +1,14 @@
-
 package Hook::WrapSub;
+$Hook::WrapSub::VERSION = '0.03_01';
+use 5.006;
+use strict;
+use warnings;
 
 use Exporter;
 use Symbol;
-use strict;
-use vars qw( $VERSION @ISA @EXPORT @EXPORT_OK );
 
-
-$VERSION = '0.03';
-@ISA = qw(Exporter);
-@EXPORT = qw();
-@EXPORT_OK = qw(
-  wrap_subs
-  unwrap_subs
-);
+our @ISA        = qw/ Exporter /;
+our @EXPORT_OK  = qw/ wrap_subs unwrap_subs /;
 
 
 =head1 NAME
@@ -218,7 +213,7 @@ sub wrap_subs(@) {
         @args = caller($up);
       }
       my @vargs = @args; # save temp
-      while ( $args[3] =~ /Hook::WrapSub/ ) {
+      while ( defined($args[3]) && $args[3] =~ /Hook::WrapSub/ ) {
         $up++;
         @args = caller($up);
       }
@@ -256,7 +251,7 @@ sub wrap_subs(@) {
       return( @Hook::WrapSub::result );
     };
 
-    $^W = 0;
+    no warnings 'redefine';
     no strict 'refs';
     *{ $fullname } = $cr;
   }
@@ -280,8 +275,8 @@ sub unwrap_subs(@) {
     local $Hook::WrapSub::UNWRAP = 1;
     my $cr = $sr->();
     if ( defined $cr and $cr =~ /\bCODE\b/ ) {
-      $^W = 0;
       no strict 'refs';
+      no warnings 'redefine';
       *{ $fullname } = $cr;
     }
     else {
@@ -291,6 +286,46 @@ sub unwrap_subs(@) {
 }
 
 1;
+
+=head1 SEE ALSO
+
+L<Hook::LexWrap> provides a similar capability to C<Hook::WrapSub>,
+but has the benefit that the C<caller()> function works correctly
+within the wrapped subroutine.
+
+L<Sub::Prepend> lets you provide a sub that will be called before
+a named sub. The C<caller()> function works correctly in the
+wrapped sub.
+
+L<Sub::Mage> provides a number of related functions.
+You can provide pre- and post-call hooks,
+you can temporarily override a function and then restore it later,
+and more.
+
+L<Class::Hook> lets you add pre- and post-call hooks around any
+methods called by your code. It doesn't support functions.
+
+L<Hook::Scope> lets you register callbacks that will be invoked
+when execution leaves the scope they were registered in.
+
+L<Hook::PrePostCall> provides an OO interface for wrapping
+a function with pre- and post-call hook functions.
+Last updated in 1997, and marked as alpha.
+
+L<Hook::Heckle> provides an OO interface for wrapping pre- and post-call
+hooks around functions or methods in a package. Not updated sinc 2003,
+and has a 20% failed rate on CPAN Testers.
+
+L<Class::Wrap> provides the C<wrap()> function, which takes a coderef
+and a package name. The coderef is invoked every time a method in
+the package is called.
+
+L<Sub::Versive> lets you stack pre- and post-call hooks.
+Last updated in 2001.
+
+=head1 REPOSITORY
+
+L<https://github.com/neilbowers/Hook-WrapSub>
 
 =head1 AUTHOR
 
