@@ -22,4 +22,4 @@ requires:
 resources:
   homepage: https://github.com/neilbowers/Hook-WrapSub
   repository: https://github.com/neilbowers/Hook-WrapSub.git
-version: 0.03_01
+version: '0.04'

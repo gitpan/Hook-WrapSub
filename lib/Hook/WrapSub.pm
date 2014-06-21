@@ -1,5 +1,5 @@
 package Hook::WrapSub;
-$Hook::WrapSub::VERSION = '0.03_01';
+$Hook::WrapSub::VERSION = '0.04';
 use 5.006;
 use strict;
 use warnings;
@@ -25,6 +25,10 @@ Hook::WrapSub - wrap subs with pre- and post-call hooks
 
 
 =head1 DESCRIPTION
+
+There are a number of other modules that provide the same functionality
+as this module, some of them better. Have a look at the list in SEE ALSO,
+below, before you decide which to use.
 
 =head2 wrap_subs
 
